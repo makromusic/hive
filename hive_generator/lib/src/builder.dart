@@ -1,4 +1,3 @@
-import 'package:analyzer/dart/constant/value.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
 
@@ -6,7 +5,7 @@ class AdapterField {
   final int index;
   final String name;
   final DartType type;
-  final DartObject? defaultValue;
+  final bool defaultValue;
 
   AdapterField(this.index, this.name, this.type, this.defaultValue);
 }

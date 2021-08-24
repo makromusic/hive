@@ -55,7 +55,7 @@ class Keystore<E> {
     var keystore = Keystore<E>(box ?? BoxBaseImpl.nullImpl<E>(),
         notifier ?? ChangeNotifier(), keyComparator);
     for (var frame in frames) {
-      keystore.insert(frame, notify: frame.key == frames.last.key);
+      keystore.insert(frame);
     }
     return keystore;
   }

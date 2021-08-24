@@ -19,8 +19,7 @@ class EnumBuilder extends Builder {
           return ${cls.name}.${field.name};''');
     }
 
-    var defaultField = getters.firstWhere(
-        (it) => it.defaultValue?.toBoolValue() == true,
+    var defaultField = getters.firstWhere((el) => el.defaultValue == true,
         orElse: () => getters.first);
     code.writeln('''
       default:

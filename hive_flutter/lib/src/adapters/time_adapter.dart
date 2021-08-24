@@ -1,15 +1,16 @@
-part of hive_flutter_adapters;
+import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
-class TimeOfDayAdapter extends TypeAdapter<TimeOfDay> {
+class TimeAdapter extends TypeAdapter<TimeOfDay> {
   @override
   TimeOfDay read(BinaryReader reader) {
-    final totalMinutes = reader.readInt();
-    return TimeOfDay(hour: totalMinutes ~/ 60, minute: totalMinutes % 60);
+    final time = reader.read() as TimeOfDay;
+    return time;
   }
 
   @override
   void write(BinaryWriter writer, TimeOfDay obj) {
-    writer.writeInt(obj.hour * 60 + obj.minute);
+    writer.write(obj);
   }
 
   @override

@@ -1,14 +1,14 @@
 part of hive_flutter;
 
 /// Signature for a function that builds a widget given a [Box].
-@Deprecated('Use [ValueListenableBuilder] and `box.listenable()` instead')
+@deprecated
 typedef BoxWidgetBuilder<T> = Widget Function(BuildContext context, Box<T> box);
 
 /// A general-purpose widget which rebuilds itself when the box or a specific
 /// key change.
 ///
 /// Deprecated: Use [ValueListenableBuilder] and `box.listenable()` instead
-@Deprecated('Use [ValueListenableBuilder] and `box.listenable()` instead')
+@deprecated
 class WatchBoxBuilder extends StatefulWidget {
   /// Creates a widget that rebuilds itself when a value in the [box] changes.
   ///
@@ -34,7 +34,7 @@ class WatchBoxBuilder extends StatefulWidget {
   _WatchBoxBuilderState createState() => _WatchBoxBuilderState();
 }
 
-@Deprecated('Use [ValueListenableBuilder] and `box.listenable()` instead')
+// ignore: deprecated_member_use_from_same_package
 class _WatchBoxBuilderState extends State<WatchBoxBuilder> {
   @visibleForTesting
   StreamSubscription? subscription;
@@ -47,7 +47,7 @@ class _WatchBoxBuilderState extends State<WatchBoxBuilder> {
   }
 
   @override
-  // ignore: deprecated_member_use
+  // ignore: deprecated_member_use_from_same_package
   void didUpdateWidget(WatchBoxBuilder oldWidget) {
     super.didUpdateWidget(oldWidget);
 
