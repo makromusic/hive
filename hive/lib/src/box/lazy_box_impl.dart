@@ -66,7 +66,7 @@ class LazyBoxImpl<E> extends BoxBaseImpl<E> implements LazyBox<E> {
       if (frame.value is HiveObjectMixin) {
         (frame.value as HiveObjectMixin).init(frame.key, this);
       }
-      keystore.insert(frame, lazy: true);
+      keystore.insert(frame, lazy: true, notify: frame.key == frames.last.key);
     }
 
     await performCompactionIfNeeded();
@@ -87,7 +87,7 @@ class LazyBoxImpl<E> extends BoxBaseImpl<E> implements LazyBox<E> {
     await backend.writeFrames(frames);
 
     for (var frame in frames) {
-      keystore.insert(frame);
+      keystore.insert(frame, notify: frame.key == frames.last.key);
     }
 
     await performCompactionIfNeeded();
