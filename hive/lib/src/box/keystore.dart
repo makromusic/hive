@@ -188,7 +188,7 @@ class Keystore<E> {
         transaction.added.add(frame.key);
       }
 
-      var deletedFrame = insert(frame);
+      var deletedFrame = insert(frame, notify: frame == newFrames.last);
       if (deletedFrame != null) {
         transaction.deleted[frame.key] = deletedFrame;
       }
@@ -226,7 +226,7 @@ class Keystore<E> {
       }
 
       _store.insert(key, deletedFrame);
-      _notifier.notify(deletedFrame!);
+      if (key == canceled.deleted.keys.last) _notifier.notify(deletedFrame!);
     }
 
     added_loop:
@@ -245,7 +245,7 @@ class Keystore<E> {
       }
       if (!isOverride) {
         _store.delete(key);
-        _notifier.notify(Frame.deleted(key));
+        if (key == canceled.added.last) _notifier.notify(Frame.deleted(key));
       }
     }
   }
@@ -260,7 +260,7 @@ class Keystore<E> {
       if (frame.value is HiveObjectMixin) {
         (frame.value as HiveObjectMixin).dispose();
       }
-      _notifier.notify(Frame.deleted(frame.key));
+      if (frame == frameList.last) _notifier.notify(Frame.deleted(frame.key));
     }
 
     _deletedEntries = 0;
